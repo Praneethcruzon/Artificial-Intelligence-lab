@@ -6,24 +6,24 @@ using namespace std;
 class Node {
 public:
 	string name;
-	int dist;
+	int huristic;
 	vector<Node> adjacent;
 	bool visited;
-	Node(string n, int d, vector<Node> a) {
+	Node(string n, int h, vector<Node> a) {
 		name = n;
-		dist = d;
+		huristic = h;
 		adjacent = a;
 		visited = false;
 	}
-	int getdist() const{
-		return dist;
+	int gethuristic() const{
+		return huristic;
 	}
 };
 
 class Comparator {
 public:
 	int operator() (const Node &n1, const Node &n2) {
-		return n1.getdist() > n2.getdist();
+		return n1.gethuristic() > n2.gethuristic();
 	}
 };
 
@@ -40,14 +40,21 @@ vector<Node> bestfirstsearch(Node &start, Node &destination) {
 		queue.pop();
 		path.push_back(n);
 		for (Node i : n.adjacent) {
-			queue.push(i);
+			if(i.visited == false){
+				queue.push(i);
+				i.visited = true;
+			}
 		}
 	}
+	//Node not found
+	return path.clear();
 
 
 }
 
 int main() {
-
+	for(int i=0;i<10;i++){
+		Node* 	
+	}
 	return 0;
 }
